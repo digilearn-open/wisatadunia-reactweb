@@ -39,13 +39,13 @@ export function HomeScreen() {
         className={classes.mainFeaturedPost}>
         <Grid item style={{flex: 2}}></Grid>
         <Grid item>
-          <Typography variant="h6" style={{textTransform: "uppercase"}}>Italy</Typography>
+          <Typography variant="subtitle1" style={{textTransform: "uppercase"}}>Italy</Typography>
         </Grid>
         <Grid item>
-          <Typography variant="h2" style={{textTransform: "uppercase"}}>Rome</Typography>
+          <Typography variant="h3" style={{textTransform: "uppercase"}}>Rome</Typography>
         </Grid>
         <Grid item>
-          <Typography variant="subtitle1" style={{textTransform: "uppercase"}}>is a historical powerhouse</Typography>
+          <Typography variant="caption" style={{textTransform: "uppercase"}}>is a historical powerhouse</Typography>
         </Grid>
         <Grid item style={{flex: 1}}></Grid>
         <Grid item style={{width: "100%"}}>
