@@ -63,7 +63,7 @@ export function HomeScreen() {
           </Grid>
         </Grid>
       </Grid>
-      <BottomNavigation showLabels style={{flex: "0 1 4rem"}}>
+      <BottomNavigation showLabels style={{flex: "0 1 6rem"}}>
         <BottomNavigationAction label="Attractions" icon={<PlaceIcon />} />
         <BottomNavigationAction label="Need to know" icon={<WorkIcon />} />
         <BottomNavigationAction label="More" icon={<MenuIcon />} />
