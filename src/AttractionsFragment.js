@@ -1,22 +1,8 @@
-import {
-  BottomNavigation,
-  BottomNavigationAction,
-  Box,
-  Grid,
-  makeStyles,
-  Typography,
-  AppBar,
-  Toolbar,
-  IconButton,
-  Paper
-} from "@material-ui/core";
-import MenuIcon from "@material-ui/icons/Menu";
-import PlaceIcon from "@material-ui/icons/Place";
-import WorkIcon from "@material-ui/icons/Work";
+import { AppBar, Grid, IconButton, makeStyles, Paper, Toolbar, Typography } from "@material-ui/core";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import MapIcon from "@material-ui/icons/Map";
-import { withRouter } from "react-router";
 import React from "react";
+import { withRouter } from "react-router";
 import "typeface-roboto";
 import "./App.css";
 

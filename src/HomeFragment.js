@@ -1,10 +1,9 @@
-import { BottomNavigation, BottomNavigationAction, Box, Grid, makeStyles, Typography, Link } from "@material-ui/core";
+import { BottomNavigation, BottomNavigationAction, Box, Grid, makeStyles, Typography } from "@material-ui/core";
 import MenuIcon from '@material-ui/icons/Menu';
 import PlaceIcon from '@material-ui/icons/Place';
 import WorkIcon from '@material-ui/icons/Work';
 import React from "react";
 import { withRouter } from "react-router";
-import { Link as RouterLink } from "react-router-dom";
 import "typeface-roboto";
 import "./App.css";
 
