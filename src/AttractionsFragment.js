@@ -59,34 +59,39 @@ function AttractionsFragment(props) {
       </AppBar>
       <Grid
         container
-        style={{ padding: "4rem 0.5rem 0.5rem 0.5rem", flex: 1 }}
+        style={{ padding: "4.5rem 0.5rem 0.5rem 0.5rem", flex: 1 }}
         spacing={1}
       >
         <Grid item xs={12} className={classes.attractionCategoryItem}>
           <Paper className={classes.attractionCategoryPaper}
-            style={{backgroundImage: 'linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url(https://placeimg.com/640/480/arch?t=1)'}}>
+            style={{backgroundImage: 'linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url(https://placeimg.com/640/480/arch?t=1)'}}
+            onClick={(e) => history.push("/cities/1/attractionCategories/1")}>
                 Must see</Paper>
         </Grid>
         <Grid item xs={6} md={3} className={classes.attractionCategoryItem}>
           <Paper className={classes.attractionCategoryPaper}
-            style={{backgroundImage: 'linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url(https://placeimg.com/640/480/arch?t=2)'}}>
+            style={{backgroundImage: 'linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url(https://placeimg.com/640/480/arch?t=2)'}}
+            onClick={(e) => history.push("/cities/1/attractionCategories/2")}>
                 Cultural</Paper>
         </Grid>
         <Grid item xs={6} md={3} className={classes.attractionCategoryItem}>
           <Paper className={classes.attractionCategoryPaper}
-            style={{backgroundImage: 'linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url(https://placeimg.com/640/480/arch?t=3)'}}>
+            style={{backgroundImage: 'linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url(https://placeimg.com/640/480/arch?t=3)'}}
+            onClick={(e) => history.push("/cities/1/attractionCategories/3")}>
             Architecture
           </Paper>
         </Grid>
         <Grid item xs={6} md={3} className={classes.attractionCategoryItem}>
           <Paper className={classes.attractionCategoryPaper}
-            style={{backgroundImage: 'linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url(https://placeimg.com/640/480/arch?t=4)'}}>
+            style={{backgroundImage: 'linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url(https://placeimg.com/640/480/arch?t=4)'}}
+            onClick={(e) => history.push("/cities/1/attractionCategories/4")}>
             Southern Rome
           </Paper>
         </Grid>
         <Grid item xs={6} md={3} className={classes.attractionCategoryItem}>
           <Paper className={classes.attractionCategoryPaper}
-            style={{backgroundImage: 'linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url(https://placeimg.com/640/480/arch?t=5)'}}>
+            style={{backgroundImage: 'linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url(https://placeimg.com/640/480/arch?t=5)'}}
+            onClick={(e) => history.push("/cities/1/attractionCategories/5")}>
                 Museums</Paper>
         </Grid>
       </Grid>
