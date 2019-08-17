@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import HomeFragment from "./HomeFragment";
 import AttractionsFragment from "./AttractionsFragment";
 import AttractionCategoryDetailFragment from "./AttractionCategoryDetailFragment";
+import AttractionDetailFragment from "./AttractionDetailFragment";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -27,6 +28,7 @@ function App() {
         <Route exact path="/" component={HomeFragment} />
         <Route exact path="/cities/:cityId/attractionCategories" component={AttractionsFragment} />
         <Route path="/cities/:cityId/attractionCategories/:attractionCategoryId" component={AttractionCategoryDetailFragment} />
+        <Route path="/cities/:cityId/attractions/:attractionId" component={AttractionDetailFragment} />
       </Container>
     </Router>
   );
