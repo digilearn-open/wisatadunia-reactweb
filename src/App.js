@@ -2,7 +2,8 @@ import { Container, makeStyles } from "@material-ui/core";
 import React from "react";
 import "typeface-roboto";
 import "./App.css";
-import { HomeScreen } from "./HomeScreen";
+import { HomeFragment } from "./HomeFragment";
+import { AttractionsFragment } from "./AttractionsFragment";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -19,7 +20,8 @@ function App() {
   const classes = useStyles();
   return (
     <Container className={classes.root}>
-      <HomeScreen/>
+      {/* <HomeFragment/> */}
+      <AttractionsFragment/>
     </Container>
   );
 }
