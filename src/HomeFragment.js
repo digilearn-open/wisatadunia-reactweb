@@ -1,8 +1,10 @@
-import { BottomNavigation, BottomNavigationAction, Box, Grid, makeStyles, Typography } from "@material-ui/core";
+import { BottomNavigation, BottomNavigationAction, Box, Grid, makeStyles, Typography, Link } from "@material-ui/core";
 import MenuIcon from '@material-ui/icons/Menu';
 import PlaceIcon from '@material-ui/icons/Place';
 import WorkIcon from '@material-ui/icons/Work';
 import React from "react";
+import { withRouter } from "react-router";
+import { Link as RouterLink } from "react-router-dom";
 import "typeface-roboto";
 import "./App.css";
 
@@ -11,7 +13,7 @@ const useStyles = makeStyles(theme => ({
     position: 'relative',
     backgroundColor: theme.palette.grey[800],
     color: theme.palette.common.white,
-    backgroundImage: 'linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url(https://placeimg.com/640/480/arch?t=0)',
+    backgroundImage: 'linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url(https://placeimg.com/640/480/arch?t=11)',
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
@@ -20,11 +22,12 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export function HomeFragment() {
+function HomeFragment(props) {
   const classes = useStyles();
+  const { match, location, history } = props;
 
   return (
-    <Box style={{display: "flex", flexDirection: "column", height: "100%"}}>
+    <Box style={{display: "flex", flexDirection: "column", height: "100%", width: "100%"}}>
       <Grid container direction="column" justify="space-around" alignItems="center" style={{height: "100%"}}
         className={classes.mainFeaturedPost}>
         <Grid item style={{flex: 2}}></Grid>
@@ -53,11 +56,16 @@ export function HomeFragment() {
           </Grid>
         </Grid>
       </Grid>
-      <BottomNavigation showLabels style={{flex: "0 1 6rem"}}>
-        <BottomNavigationAction label="Attractions" icon={<PlaceIcon />} />
-        <BottomNavigationAction label="Need to know" icon={<WorkIcon />} />
-        <BottomNavigationAction label="More" icon={<MenuIcon />} />
+      <BottomNavigation showLabels style={{flex: "0 1 6rem"}}
+        onChange={(event, newValue) => {
+          history.push(newValue);
+        }}>
+        <BottomNavigationAction value="/attractions" label="Attractions" icon={<PlaceIcon />} />
+        <BottomNavigationAction value="/need-to-know" label="Need to know" icon={<WorkIcon />} />
+        <BottomNavigationAction value="/more" label="More" icon={<MenuIcon />} />
       </BottomNavigation>
     </Box>
   );
 }
+
+export default withRouter(HomeFragment);

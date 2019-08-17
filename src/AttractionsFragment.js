@@ -15,6 +15,7 @@ import PlaceIcon from "@material-ui/icons/Place";
 import WorkIcon from "@material-ui/icons/Work";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import MapIcon from "@material-ui/icons/Map";
+import { withRouter } from "react-router";
 import React from "react";
 import "typeface-roboto";
 import "./App.css";
@@ -37,14 +38,15 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export function AttractionsFragment() {
+function AttractionsFragment(props) {
   const classes = useStyles();
+  const { match, location, history } = props;
 
   return (
     <div style={{ display: "flex", flex: 1 }}>
       <AppBar position="fixed">
         <Toolbar>
-          <IconButton edge="start" color="inherit" aria-label="back">
+          <IconButton edge="start" color="inherit" aria-label="back" onClick={(e) => history.goBack()}>
             <ArrowBackIcon />
           </IconButton>
           <Typography variant="h6" style={{ flexGrow: 1 }}>
@@ -91,3 +93,5 @@ export function AttractionsFragment() {
     </div>
   );
 }
+
+export default withRouter(AttractionsFragment);
