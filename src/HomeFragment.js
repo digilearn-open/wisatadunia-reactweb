@@ -25,6 +25,9 @@ const useStyles = makeStyles(theme => ({
 function HomeFragment(props) {
   const classes = useStyles();
   const { match, location, history } = props;
+  const city = {
+    id: 1,
+  };
 
   return (
     <Box style={{display: "flex", flexDirection: "column", height: "100%", width: "100%"}}>
@@ -60,7 +63,7 @@ function HomeFragment(props) {
         onChange={(event, newValue) => {
           history.push(newValue);
         }}>
-        <BottomNavigationAction value="/attractions" label="Attractions" icon={<PlaceIcon />} />
+        <BottomNavigationAction value={`/cities/${city.id}/attractionCategories`} label="Attractions" icon={<PlaceIcon />} />
         <BottomNavigationAction value="/need-to-know" label="Need to know" icon={<WorkIcon />} />
         <BottomNavigationAction value="/more" label="More" icon={<MenuIcon />} />
       </BottomNavigation>

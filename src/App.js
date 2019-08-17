@@ -25,7 +25,7 @@ function App() {
     <Router>
       <Container className={classes.root}>
         <Route exact path="/" component={HomeFragment} />
-        <Route path="/attractions" component={AttractionsFragment} />
+        <Route exact path="/cities/:cityId/attractionCategories" component={AttractionsFragment} />
         <Route path="/cities/:cityId/attractionCategories/:attractionCategoryId" component={AttractionCategoryDetailFragment} />
       </Container>
     </Router>

@@ -41,6 +41,7 @@ const useStyles = makeStyles(theme => ({
 function AttractionsFragment(props) {
   const classes = useStyles();
   const { match, location, history } = props;
+  const { cityId } = match.params;
 
   return (
     <div style={{ display: "flex", flex: 1 }}>
