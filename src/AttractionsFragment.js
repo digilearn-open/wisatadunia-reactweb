@@ -4,7 +4,6 @@ import MapIcon from "@material-ui/icons/Map";
 import React from "react";
 import { withRouter } from "react-router";
 import "typeface-roboto";
-import "./App.css";
 
 const useStyles = makeStyles(theme => ({
   attractionCategoryItem: {
@@ -46,7 +45,7 @@ function AttractionsFragment(props) {
       </AppBar>
       <Grid
         container
-        style={{ padding: "4.5rem 0.5rem 0.5rem 0.5rem", flex: 1 }}
+        style={{margin: "4.5rem 0.5rem 0.5rem 0.5rem", flex: 1}}
         spacing={1}
       >
         <Grid item xs={12} className={classes.attractionCategoryItem}>
