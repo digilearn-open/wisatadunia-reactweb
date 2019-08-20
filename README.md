@@ -8,6 +8,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 UI Design is inspired by [Travel Audio Guide UI Kit by Garigov](https://dribbble.com/shots/6984689-Travel-Audio-Guide-UI-Kit#shot-description).
 
+## Branches
+
+1. `phase1-static`: Data JSON statis, tidak melakukan `fetch()` ke remote API sama sekali.
+2. `phase2-mock`: Data dinamis, melakukan `fetch()` ke REST API yang disediakan oleh Postman Mock, namun beberapa data yaitu foto tetap menggunakan placeholder. Secara penggunaan REST API, sama persis dengan branch `master`.
+3. `master`: Data dinamis, melakukan `fetch()` ke REST API yang disediakan oleh Travel service (Spring Boot App), dan data foto sudah menggunakan file storage dari Travel service.
+
 ## Available Scripts
 
 In the project directory, you can run:
