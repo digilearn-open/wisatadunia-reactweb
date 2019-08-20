@@ -4,6 +4,10 @@ WisataDunia: Sample React Web app project
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## UI Design
+
+UI Design is inspired by [Travel Audio Guide UI Kit by Garigov](https://dribbble.com/shots/6984689-Travel-Audio-Guide-UI-Kit#shot-description).
+
 ## Available Scripts
 
 In the project directory, you can run:
