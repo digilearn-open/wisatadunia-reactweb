@@ -45,39 +45,16 @@ class AttractionCategoryDetailFragment extends React.Component {
   }
 
   componentDidMount() {
-    /* this.setState({
-      attractionCategory: {
-        name: "Must see"
-      },
-      attractions: [
-        {
-          id: 1,
-          name: "The Collosseum",
-          subtitle: "One of the most recognizable sites in the world",
-          fileName: "https://placeimg.com/640/480/arch?t=101",
-          favorited: false
-        },
-        {
-          id: 2,
-          name: "The Trevi Fountain",
-          subtitle: "It was designed by architect Nicola Salvi in the 18th",
-          fileName: "https://placeimg.com/640/480/arch?t=102",
-          favorited: true
-        },
-        {
-          id: 3,
-          name: "Castel Sant'Angelo",
-          subtitle: "Erected on the banks of the Tiber River",
-          fileName: "https://placeimg.com/640/480/arch?t=103",
-          favorited: false
-        }
-      ]
-    }); */
     this.fetchAttractionCategory();
     this.fetchAttractions();
   }
 
   async fetchAttractionCategory() {
+    /* this.setState({
+      attractionCategory: {
+        name: "Must see"
+      },
+    }); */
     const { cityId, attractionCategoryId } = this.props.match.params;
     const attractionCategoryUrl = `${
       appConfig.travelApiUrl
@@ -91,6 +68,31 @@ class AttractionCategoryDetailFragment extends React.Component {
   }
 
   async fetchAttractions() {
+    /* this.setState({
+      attractions: [
+        {
+          id: 1,
+          name: "The Collosseum",
+          subtitle: "One of the most recognizable sites in the world",
+          fileName: "101",
+          favorited: false
+        },
+        {
+          id: 2,
+          name: "The Trevi Fountain",
+          subtitle: "It was designed by architect Nicola Salvi in the 18th",
+          fileName: "102",
+          favorited: true
+        },
+        {
+          id: 3,
+          name: "Castel Sant'Angelo",
+          subtitle: "Erected on the banks of the Tiber River",
+          fileName: "103",
+          favorited: false
+        }
+      ]
+    }); */
     const { cityId, attractionCategoryId } = this.props.match.params;
     const searchUrl = `${
       appConfig.travelApiUrl
