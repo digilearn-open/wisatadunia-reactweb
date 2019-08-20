@@ -1,4 +1,4 @@
-import { Grid, Tab, Tabs, Typography } from "@material-ui/core";
+import { Grid, Tab, Tabs, Typography, IconButton } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
@@ -17,6 +17,7 @@ import ReactMapGL from "react-map-gl";
 import { withRouter } from "react-router";
 import "typeface-roboto";
 import MAP_STYLE from "./map-style-basic-v8.json";
+import appConfig from "./appConfig.json";
 
 const styles = theme => ({
   cover: {
@@ -38,7 +39,22 @@ const mapboxApiAccessToken =
 class AttractionDetailFragment extends React.PureComponent {
   constructor(props) {
     super(props);
-    const attraction = {
+    this.state = {
+      attraction: {},
+      mapViewport: {
+        width: "100%",
+        height: "10rem",
+        zoom: 12
+      }
+    };
+  }
+
+  componentDidMount() {
+    this.fetchAttraction();
+  }
+
+  async fetchAttraction() {
+    /* const attraction = {
       name: "The Colosseum",
       attractionCategoryId: 1,
       attractionCategoryName: "Must see",
@@ -56,17 +72,20 @@ class AttractionDetailFragment extends React.PureComponent {
       url: "http://www.parcocolosseo.it/",
       longitude: 12.4922309,
       latitude: 41.8902102
-    };
-    this.state = {
+    }; */
+    const { cityId, attractionId } = this.props.match.params;
+    const attractionUrl = `${appConfig.travelApiUrl}/attractions/${attractionId}?projection=attractionRelated`;
+    console.info("Fetching", attractionUrl, "...");
+    const resp = await fetch(attractionUrl, {method: "GET"});
+    const attraction = await resp.json();
+    this.setState({
       attraction: attraction,
       mapViewport: {
-        width: "100%",
-        height: "10rem",
+        ...this.state.mapViewport,
         latitude: attraction.latitude,
-        longitude: attraction.longitude,
-        zoom: 12
+        longitude: attraction.longitude
       }
-    };
+    });
   }
 
   render() {
@@ -74,43 +93,45 @@ class AttractionDetailFragment extends React.PureComponent {
     const { classes, match, location, history } = this.props;
     const { cityId, attractionId } = match.params;
     const mapStyle = Object.assign({}, MAP_STYLE);
-    mapStyle.sources = {
-      ...mapStyle.sources,
-      attraction: {
-        type: "geojson",
-        data: {
-          type: "FeatureCollection",
-          features: [
-            {
-              type: "Feature",
-              geometry: {
-                type: "Point",
-                coordinates: [attraction.longitude, attraction.latitude]
-              },
-              properties: {
-                title: attraction.name,
-                icon: "marker"
+    if (attraction) {
+      mapStyle.sources = {
+        ...mapStyle.sources,
+        attraction: {
+          type: "geojson",
+          data: {
+            type: "FeatureCollection",
+            features: [
+              {
+                type: "Feature",
+                geometry: {
+                  type: "Point",
+                  coordinates: [attraction.longitude, attraction.latitude]
+                },
+                properties: {
+                  title: attraction.name,
+                  icon: "marker"
+                }
               }
-            }
-          ]
+            ]
+          }
         }
-      }
-    };
-    mapStyle.layers = [
-      ...MAP_STYLE.layers,
-      {
-        id: "attraction-layer",
-        type: "symbol",
-        source: "attraction",
-        layout: {
-          "icon-image": "{icon}-15",
-          "text-field": "{title}",
-          "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-          "text-offset": [0, 0.6],
-          "text-anchor": "top"
+      };
+      mapStyle.layers = [
+        ...MAP_STYLE.layers,
+        {
+          id: "attraction-layer",
+          type: "symbol",
+          source: "attraction",
+          layout: {
+            "icon-image": "{icon}-15",
+            "text-field": "{title}",
+            "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+            "text-offset": [0, 0.6],
+            "text-anchor": "top"
+          }
         }
-      }
-    ];
+      ];
+    }
     return (
       <Grid container style={{ alignContent: "baseline" }}>
         <Grid
@@ -118,25 +139,32 @@ class AttractionDetailFragment extends React.PureComponent {
           xs={12}
           className={classes.cover}
           style={{
-            backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url(${
-              attraction.coverPhotoUrl
+            backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url(https://placeimg.com/640/480/arch?t=${
+              attraction.fileName
             })`
           }}
         >
           <Grid container style={{ justifyContent: "space-between" }}>
             <Grid item>
-              <ArrowBackIcon onClick={e => history.goBack()} />
+              <IconButton
+                size="small"
+                color="inherit"
+                onClick={e => history.goBack()}
+                style={{}}
+              >
+                <ArrowBackIcon />
+              </IconButton>
             </Grid>
             <Grid item>
-              <FavoriteIcon
-                style={{ color: attraction.favorited ? "red" : "inherit" }}
-              />
+              <IconButton size="small">
+                <FavoriteIcon color={ attraction.favorited ? "secondary" : "inherit" } />
+              </IconButton>
             </Grid>
           </Grid>
           <div style={{ flexGrow: 1 }} />
           <Typography variant="h6">{attraction.name}</Typography>
           <Typography variant="caption" style={{ opacity: 0.8 }}>
-            {attraction.attractionCategoryName}
+            {attraction.attractionCategory && attraction.attractionCategory.name}
           </Typography>
         </Grid>
         <Grid item xs={12}>
@@ -174,7 +202,7 @@ class AttractionDetailFragment extends React.PureComponent {
           <Grid container style={{ justifyContent: "space-evenly" }}>
             <Grid item>
               <Typography>
-                <strong>14.2</strong>{" "}
+                <strong>{attraction.distance}</strong>{" "}
                 <small style={{ color: "#888" }}>km</small>
               </Typography>
               <Typography variant="caption" color="textSecondary">
@@ -183,7 +211,7 @@ class AttractionDetailFragment extends React.PureComponent {
             </Grid>
             <Grid item>
               <Typography>
-                <strong>~15</strong>{" "}
+                <strong>~{attraction.duration}</strong>{" "}
                 <small style={{ color: "#888" }}>min</small>
               </Typography>
               <Typography variant="caption" color="textSecondary">
@@ -192,7 +220,7 @@ class AttractionDetailFragment extends React.PureComponent {
             </Grid>
             <Grid item>
               <Typography>
-                <strong style={{ color: "#f33" }}>#2</strong>{" "}
+                <strong style={{ color: "#f33" }}>#{attraction.rank}</strong>{" "}
                 <small style={{ color: "#888" }}>/ 50</small>
               </Typography>
               <Typography variant="caption" color="textSecondary">
@@ -229,7 +257,7 @@ class AttractionDetailFragment extends React.PureComponent {
               fontSize: "80%"
             }}
           >
-            {attraction.locationName}
+            {attraction.location}
           </Typography>
         </Grid>
         <Grid item xs={2} style={{ textAlign: "center" }}>
@@ -243,7 +271,7 @@ class AttractionDetailFragment extends React.PureComponent {
               fontSize: "80%"
             }}
           >
-            {attraction.openInfo}
+            {attraction.timeOpen}
           </Typography>
         </Grid>
         <Grid item xs={2} style={{ textAlign: "center" }}>
@@ -257,14 +285,14 @@ class AttractionDetailFragment extends React.PureComponent {
               fontSize: "80%"
             }}
           >
-            {attraction.ticketInfo}
+            {attraction.ticket}
           </Typography>
         </Grid>
         <Grid item xs={2} style={{ textAlign: "center" }}>
           <PhoneIcon />
         </Grid>
         <Grid item xs={10} style={{ padding: "0 1rem 1rem 0" }}>
-          <Typography>{attraction.phone}</Typography>
+          <Typography>{attraction.phoneNumber}</Typography>
         </Grid>
         <Grid item xs={2} style={{ textAlign: "center" }}>
           <EmailIcon />
@@ -276,7 +304,7 @@ class AttractionDetailFragment extends React.PureComponent {
           <LinkIcon />
         </Grid>
         <Grid item xs={10} style={{ padding: "0 1rem 1rem 0" }}>
-          <Typography>{attraction.url}</Typography>
+          <Typography>{attraction.website}</Typography>
         </Grid>
       </Grid>
     );
