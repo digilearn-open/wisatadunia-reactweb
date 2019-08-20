@@ -1,20 +1,12 @@
-import {
-  BottomNavigation,
-  BottomNavigationAction,
-  Box,
-  Grid,
-  Typography,
-  withStyles
-} from "@material-ui/core";
+import { BottomNavigation, BottomNavigationAction, Box, Grid, Typography, withStyles } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import PlaceIcon from "@material-ui/icons/Place";
 import WorkIcon from "@material-ui/icons/Work";
+import { format, utcToZonedTime } from "date-fns-tz";
 import React from "react";
 import { withRouter } from "react-router";
 import "typeface-roboto";
 import "./App.css";
-import appConfig from "./appConfig.json";
-import { utcToZonedTime, format } from "date-fns-tz";
 const styles = theme => ({
   mainFeaturedPost: {
     position: "relative",
@@ -43,7 +35,7 @@ class HomeFragment extends React.Component {
   }
 
   async fetchCity() {
-    /* this.setState({
+    this.setState({
       city: {
         "id": 1,
         "name": "Rome",
@@ -70,15 +62,6 @@ class HomeFragment extends React.Component {
         }
       },
       backgroundImageUrl: "https://placeimg.com/640/480/arch?t=11",
-    }); */
-    const { cityId } = this.state;
-    const cityUrl = `${appConfig.travelApiUrl}/cities/${cityId}?projection=cityRelated`;
-    console.info("Fetching", cityUrl, "...");
-    const resp = await fetch(cityUrl, {method: "GET"});
-    const city = await resp.json();
-    this.setState({
-      city: city,
-      backgroundImageUrl: "https://placeimg.com/640/480/arch?t=11",
     });
   }
 
@@ -90,7 +73,7 @@ class HomeFragment extends React.Component {
     return (
       <Box
         style={{display: "flex", flexDirection: "column", height: "100%", width: "100%"}}>
-          
+
         <Grid container direction="column" justify="space-around" alignItems="center"
           style={{height: "100%", 
             backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ),

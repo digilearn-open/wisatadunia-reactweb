@@ -1,11 +1,9 @@
-import React, { Component } from "react";
-import { AppBar, Grid, IconButton, Paper, Toolbar, Typography, 
-  withStyles, Box } from "@material-ui/core";
+import { AppBar, Grid, IconButton, Paper, Toolbar, Typography, withStyles } from "@material-ui/core";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import MapIcon from "@material-ui/icons/Map";
+import React, { Component } from "react";
 import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
-import appConfig from "./appConfig.json";
 
 const styles = theme => ({
   attractionCategoryItem: {
@@ -40,7 +38,7 @@ class AttractionCategoriesFragment extends Component {
   }
 
   async fetchAttractionCategories() {
-    /* this.setState({
+    this.setState({
       attractionCategories: [
         { id: 3, name: "Must see" },
         { id: 4, name: "Cultural" },
@@ -48,11 +46,6 @@ class AttractionCategoriesFragment extends Component {
         { id: 6, name: "Southern Rome" },
         { id: 7, name: "Museums" }
       ]
-    }); */
-    const resp = await fetch(`${appConfig.travelApiUrl}/attractionCategories`, {method: "GET"});
-    const json = await resp.json();
-    this.setState({
-      attractionCategories: json._embedded.attractionCategories,
     });
   }
 

@@ -1,4 +1,4 @@
-import { Grid, Tab, Tabs, Typography, IconButton } from "@material-ui/core";
+import { Grid, IconButton, Tab, Tabs, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
@@ -17,7 +17,6 @@ import ReactMapGL from "react-map-gl";
 import { withRouter } from "react-router";
 import "typeface-roboto";
 import MAP_STYLE from "./map-style-basic-v8.json";
-import appConfig from "./appConfig.json";
 
 const styles = theme => ({
   cover: {
@@ -54,32 +53,32 @@ class AttractionDetailFragment extends React.Component {
   }
 
   async fetchAttraction() {
-    /* const attraction = {
+    const attraction = {
       name: "The Colosseum",
-      attractionCategoryId: 1,
-      attractionCategoryName: "Must see",
-      coverPhotoUrl: "https://placeimg.com/640/480/arch?t=101",
+      attractionCategory: {
+        id: 1,
+        name: "Must see",
+      },
+      fileName: "https://placeimg.com/640/480/arch?t=101",
       favorited: true,
       description:
         `Rome’s great gladiatorial arena is the most thrilling of the city's ancient sights. 
         Inaugurated in AD 80, the 50,000-seat Colosseum, also known as the Flavian Amphitheatre, 
         was originally clad in travertine...`,
-      locationName: "Piazza del Colosseo",
-      openInfo: `Monday - Sunday 8.30 am - 6.00 pm
+      distance: 3.5,
+      duration: 15,
+      rank: 2,
+      location: "Piazza del Colosseo",
+      timeOpen: `Monday - Sunday 8.30 am - 6.00 pm
   Saturday - Sunday 8.30 am - 7.00 pm`,
-      ticketInfo:
+      ticket:
         "Adult/reduced incl Roman Forum & Palatino €12/7.50, SUPER ticket €18/13.50",
-      phone: "06 3996 7700",
+      phoneNumber: "06 3996 7700",
       email: "pa-colosseo@benicultural.it",
-      url: "http://www.parcocolosseo.it/",
+      website: "http://www.parcocolosseo.it/",
       longitude: 12.4922309,
       latitude: 41.8902102
-    }; */
-    const { cityId, attractionId } = this.props.match.params;
-    const attractionUrl = `${appConfig.travelApiUrl}/attractions/${attractionId}?projection=attractionRelated`;
-    console.info("Fetching", attractionUrl, "...");
-    const resp = await fetch(attractionUrl, {method: "GET"});
-    const attraction = await resp.json();
+    };
     this.setState({
       attraction: attraction,
       mapViewport: {
