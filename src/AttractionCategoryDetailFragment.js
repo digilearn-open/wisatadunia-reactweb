@@ -29,8 +29,6 @@ const styles = theme => ({
     backgroundPosition: "center",
     display: "flex",
     flexDirection: "column",
-    // justifyContent: "center",
-    // alignItems: "stretch",
     padding: "1rem",
     height: "12rem",
     textDecoration: "none"

@@ -36,7 +36,7 @@ const styles = theme => ({
 const mapboxApiAccessToken =
   "pk.eyJ1IjoiaGVuZHlpcmF3YW4iLCJhIjoiY2l3cnpvNmRqMTVjcDJ6cXpxb2UxejVnbSJ9.ePnKula0P6I1BhiySWkG1w";
 
-class AttractionDetailFragment extends React.PureComponent {
+class AttractionDetailFragment extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -61,7 +61,9 @@ class AttractionDetailFragment extends React.PureComponent {
       coverPhotoUrl: "https://placeimg.com/640/480/arch?t=101",
       favorited: true,
       description:
-        "Rome’s great gladiatorial arena is the most thrilling of the city's ancient sights. Inaugurated in AD 80, the 50,000-seat Colosseum, also known as the Flavian Amphitheatre, was originally clad in travertine...",
+        `Rome’s great gladiatorial arena is the most thrilling of the city's ancient sights. 
+        Inaugurated in AD 80, the 50,000-seat Colosseum, also known as the Flavian Amphitheatre, 
+        was originally clad in travertine...`,
       locationName: "Piazza del Colosseo",
       openInfo: `Monday - Sunday 8.30 am - 6.00 pm
   Saturday - Sunday 8.30 am - 7.00 pm`,

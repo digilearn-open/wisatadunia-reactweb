@@ -89,27 +89,16 @@ class HomeFragment extends React.Component {
     const cityDate = format(utcToZonedTime(new Date(), "Europe/Rome"), "MMM d, yyyy");
     return (
       <Box
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          height: "100%",
-          width: "100%"
-        }}
-      >
-        <Grid
-          container
-          direction="column"
-          justify="space-around"
-          alignItems="center"
-          style={{height: "100%", backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url(${this.state.backgroundImageUrl})`}}
-          className={classes.mainFeaturedPost}
-        >
+        style={{display: "flex", flexDirection: "column", height: "100%", width: "100%"}}>
+          
+        <Grid container direction="column" justify="space-around" alignItems="center"
+          style={{height: "100%", 
+            backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ),
+              url(${this.state.backgroundImageUrl})`}}
+          className={classes.mainFeaturedPost}>
           <Grid item style={{ flex: 2 }} />
           <Grid item>
-            <Typography
-              variant="subtitle1"
-              style={{ textTransform: "uppercase" }}
-            >
+            <Typography variant="subtitle1" style={{ textTransform: "uppercase" }}>
               {city.country && city.country.name}
             </Typography>
           </Grid>
@@ -119,10 +108,7 @@ class HomeFragment extends React.Component {
             </Typography>
           </Grid>
           <Grid item>
-            <Typography
-              variant="caption"
-              style={{ textTransform: "uppercase" }}
-            >
+            <Typography variant="caption" style={{ textTransform: "uppercase" }}>
               {city.shortDesc}
             </Typography>
           </Grid>
@@ -130,20 +116,14 @@ class HomeFragment extends React.Component {
           <Grid item style={{ width: "100%" }}>
             <Grid container justify="space-between">
               <Grid item style={{ padding: "1rem" }}>
-                <Typography
-                  variant="caption"
-                  style={{ textTransform: "uppercase" }}
-                >
+                <Typography variant="caption" style={{ textTransform: "uppercase" }}>
                   Local time
                 </Typography>
                 <Typography variant="h5">{cityTime}</Typography>
                 <Typography variant="caption">{cityDate}</Typography>
               </Grid>
               <Grid item style={{ padding: "1rem", textAlign: "right" }}>
-                <Typography
-                  variant="caption"
-                  style={{ textTransform: "uppercase" }}
-                >
+                <Typography variant="caption" style={{ textTransform: "uppercase" }}>
                   Today
                 </Typography>
                 <Typography variant="h5">{city.temperatureCelsius}°C</Typography>
@@ -152,28 +132,17 @@ class HomeFragment extends React.Component {
             </Grid>
           </Grid>
         </Grid>
-        <BottomNavigation
-          showLabels
-          style={{ flex: "0 1 6rem" }}
+
+        <BottomNavigation showLabels style={{ flex: "0 1 6rem" }}
           onChange={(event, newValue) => {
             history.push(newValue);
-          }}
-        >
-          <BottomNavigationAction
-            value={`/cities/${city.id}/attractionCategories`}
-            label="Attractions"
-            icon={<PlaceIcon />}
-          />
-          <BottomNavigationAction
-            value="/need-to-know"
-            label="Need to know"
-            icon={<WorkIcon />}
-          />
-          <BottomNavigationAction
-            value="/more"
-            label="More"
-            icon={<MenuIcon />}
-          />
+          }} >
+          <BottomNavigationAction value={`/cities/${city.id}/attractionCategories`}
+            label="Attractions" icon={<PlaceIcon />} />
+          <BottomNavigationAction value="/need-to-know"
+            label="Need to know" icon={<WorkIcon />} />
+          <BottomNavigationAction value="/more"
+            label="More" icon={<MenuIcon />} />
         </BottomNavigation>
       </Box>
     );
