@@ -7,6 +7,7 @@ import React from "react";
 import { withRouter } from "react-router";
 import "typeface-roboto";
 import "./App.css";
+
 const styles = theme => ({
   mainFeaturedPost: {
     position: "relative",
@@ -31,22 +32,30 @@ class HomeFragment extends React.Component {
   }
 
   componentDidMount() {
-    this.fetchCity();
+    setTimeout(() => this.fetchCity(), 2000);
+    /* setTimeout(() => this.setState(
+      {
+        city: {
+          ...this.state.city,
+          name: "Padang"
+        }
+      })
+    , 5000); */
   }
 
   async fetchCity() {
     this.setState({
       city: {
         "id": 1,
-        "name": "Rome",
+        "name": "Bukittinggi",
         "shortDesc": "is a historical powerhouse",
         "timeZone": "Europe/Rome",
         "fileName": "rome.jpg",
         "temperatureCelsius": -2.0,
         "weather": "Scattered clouds",
         "country": {
-          "id": "IT",
-          "name": "Italy"
+          "id": "ID",
+          "name": "Indonesia"
         },
         "_links": {
           "self": {
@@ -67,9 +76,11 @@ class HomeFragment extends React.Component {
 
   render() {
     const { classes, match, location, history } = this.props;
+    // sama aja: const city = this.state.city;
     const { city } = this.state;
-    const cityTime = format(utcToZonedTime(new Date(), "Europe/Rome"), "hh:mm aa");
-    const cityDate = format(utcToZonedTime(new Date(), "Europe/Rome"), "MMM d, yyyy");
+    const cityTime = format(utcToZonedTime(new Date(), city.timeZone), "hh:mm aa");
+    const cityDate = format(utcToZonedTime(new Date(), city.timeZone), "MMM d, yyyy");
+
     return (
       <Box
         style={{display: "flex", flexDirection: "column", height: "100%", width: "100%"}}>
