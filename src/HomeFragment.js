@@ -13,8 +13,11 @@ import React from "react";
 import { withRouter } from "react-router";
 import "typeface-roboto";
 import "./App.css";
-import appConfig from "./appConfig.json";
 import { utcToZonedTime, format } from "date-fns-tz";
+
+// Membaca konfigurasi Travel API URL
+import appConfig from "./appConfig.json";
+
 const styles = theme => ({
   mainFeaturedPost: {
     position: "relative",
@@ -71,15 +74,27 @@ class HomeFragment extends React.Component {
       },
       backgroundImageUrl: "https://placeimg.com/640/480/arch?t=11",
     }); */
+
+    // Mengambil nilai cityId
     const { cityId } = this.state;
-    const cityUrl = `${appConfig.travelApiUrl}/cities/${cityId}?projection=cityRelated`;
+    // Menyiapkan URL untuk API "Get city with related"
+    const cityUrl =
+      `${appConfig.travelApiUrl}/cities/${cityId}?projection=cityRelated`;
+    // Tampilkan log di web browser Console
     console.info("Fetching", cityUrl, "...");
-    const resp = await fetch(cityUrl, {method: "GET"});
-    const city = await resp.json();
-    this.setState({
-      city: city,
-      backgroundImageUrl: "https://placeimg.com/640/480/arch?t=11",
-    });
+    try {
+      // Send GET request ke Travel API Service
+      const resp = await fetch(cityUrl, {method: "GET"});
+      // Parse data dari format JSON menjadi JavaScript object
+      const city = await resp.json();
+      // Mengupdate state component React berdasarkan data tsb. (otomatis mengupdate UI)
+      this.setState({
+        city: city,
+        backgroundImageUrl: "https://placeimg.com/640/480/arch?t=11",
+      });
+    } catch (e) {
+      console.error("Error:", e);
+    }
   }
 
   render() {
